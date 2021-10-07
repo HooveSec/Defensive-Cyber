@@ -1,0 +1,35 @@
+w
+date
+date -u
+id
+uname -a
+hostname
+sestatus
+ps -ef
+ps -elf
+ps -aux
+ps -ef --sort start_time
+ifconfig -a
+netstat -natup
+netstat -rn
+arp -v 
+df -h
+ls -latr /etc/cron*
+ls -latr /var/spool/cron /var/spool/at
+ls -latr /root
+ls -latr /
+ls -latr /home
+ls -latr /export/home
+ls -latr /export/home/*
+ls -latr /tmp
+ls -latr /home/*/.bash_history
+ls -latr /home/*/.history
+ls -latr /bin
+ls -latr /sbin
+ls -latr /usr/bin
+ls -latr /usr/sbin
+ls -latr /usr/local/bin
+ls -latr /usr/local/sbin
+ls -latr /var/log /var/log/audit
+ls -latr /var/adm
+last -i
