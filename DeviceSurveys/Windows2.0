@@ -1,0 +1,55 @@
+tasklist /v
+tasklist /svc
+reg query HKLM\Software
+ipconfig /all
+ipconfig /displaydns
+netstat -anob
+netstat -anob | findstr LIST
+netstat -anob | findstr EST
+arp -a
+psloggedon -accepteula
+route print
+netsh wlan show settings
+netsh wlan show profiles
+netsh advfirewall show mode
+netsh advfirewall show allprofiles
+netsh advfirewall show global
+netsh advfirewall firewall show rule name=all
+driverquery
+driverquery /si
+net start
+sc query
+reg query HKU
+net use
+net view
+schtasks
+dir C:\
+dir C:\progra~1
+dir C:\progra~2
+dir C:\users
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnceEx
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+whoami /all
+reg query HKLM\System\CurrentControlSet\Control\Hivelist
+wmic /node:localhost /namespace:\\root\securitycenter2 path antivirusproduct get displayname /format:list
+listdlls -accepteula | find /I "Command"
+wmic useraccount get fullname,name,sid
+#Powershell command
+gci -recurse | foreach { get-item $_.FullName -stream * } | where stream -ne ':$DATA'
+pslist /accepteula /t | more
+w32tm /tz
+tzutil /g
+wmic process get processid,parentprocessid,executablepath,commandline
+listdlls -d
+doskey /h
+reg query hklm\system\currentcontrolset\services\tcpip\parameters
+systeminfo | more
+pslist -t -accepteula | more 
+autorunsc -t | more
+autorunsc -b | more 
+wmic startup 
+
+
