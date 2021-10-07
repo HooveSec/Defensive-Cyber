@@ -1,0 +1,47 @@
+date
+uptime
+uname -a
+psrinfo -v
+hostid
+modinfo -c
+prtpicl
+vmstat
+hostname
+ifconfig -a
+arp -an
+netstat -nr
+netstat -na
+cat /etc/resolv.conf
+ps -ef
+pfiles `echo /proc/*`
+w
+who -r
+who -b
+id -a
+last -
+env
+locale
+df -k -l
+ls -la /
+ls -la /etc
+ls -la /bin
+ls -la /sbin
+ls -la /usr
+ls -la /usr/sbin
+ls -la /usr/bin
+ls -la /init.d
+ls -la /etc/cron.d
+ls -la /var/spool/cron/crontabs
+ls -la /var/spool/cron/atjobs
+cat /etc/inittab
+cat /var/spool/cron/crontabs/root
+cat /etc/syslog.conf
+cat /etc/inetd.conf
+cat /etc/passwd
+cat /etc/shadow
+cat /etc/group
+cat /root/.history
+cat /root/.bash_history
+tail /var/adm/messages
+tail /var/log/syslog
+tail /var/log/authlog
