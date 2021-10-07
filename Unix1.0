@@ -1,10 +1,10 @@
-w
-date
-date -u
-id
+w; id
+date; date -u
+groups
 uname -a
 hostname
 sestatus
+getenforce
 ps -ef
 ps -elf
 ps -aux
@@ -14,6 +14,7 @@ netstat -natup
 netstat -rn
 arp -v 
 df -h
+mount
 ls -latr /etc/cron*
 ls -latr /var/spool/cron /var/spool/at
 ls -latr /root
@@ -33,3 +34,10 @@ ls -latr /usr/local/sbin
 ls -latr /var/log /var/log/audit
 ls -latr /var/adm
 last -i
+cat /etc/*syslog.conf
+cat /etc/*crontab
+cat /etc/inittab
+cat /etc/rc.local
+cat /etc/rc.sysinit
+find / -type d -name ".*" 2>/dev/null
+find / -type f -name ".*" 2>/dev/null
