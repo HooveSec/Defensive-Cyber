@@ -1,0 +1,97 @@
+unset HISTFILE
+service auditd status 
+service auditd stop
+date; date +%s
+uname -a; cat /proc/cpuinfo
+lsb_release -a; cat /etc/*release* 
+find /var/log -type f -mmin -10
+echo $LANG
+locale
+w;id;last;lastlog;who
+uptime
+sestatus;getenforce
+/sbin/lsmod
+free;cat /proc/meminfo
+hostname
+cat /etc/resolv.conf
+netstat -rn
+/sbin/route
+/sbin/ifconfig -a
+ip a
+netstat -natup
+ls -latr /etc
+ps -eaf
+ls -latr /etc/resolv.conf
+ls -al /etc/cron.*;ls -al /var/spool/cron/crontabs
+cat /etc/crontab; ls -lisa /etc/cron.*
+iptables -nL
+iptables -S
+stat /proc/1/exe
+find / -type f -name *.*history
+service --status-all
+cat /etc/syslog.conf /etc/rsyslog.conf
+cat /etc/logrotate.conf;ls -al /etc/logrotate.d
+cat /etc/inittab;ls /etc/rc.d/rc3.d; ls /etc/init.d 
+runlevel
+who -r
+cat /var/log/rpmpkgs;rpm -qa; yum list installed; apt list --installed
+cat /etc/rc.local;cat /etc/fstab /etc/hosts
+mount
+cat /etc/passwd /etc/shadow /etc/group 
+ls -lisaR /root /tmp /home
+cat /etc/sudoers
+cat .bash_history
+ls -lisa /etc/*.conf
+systemctl status
+
+mini survey 
+date
+cat /etc/*release*
+w 
+lastlog 
+uptime 
+hostname 
+uname -a 
+/sbin/ip a
+netstat -natup
+ps -elf
+free
+
+date
+	grep -v "Mmm DD HH:MM:ss" log > new 
+pid
+	grep -v "processname\[pid\]" log > new 
+
+auditt 
+	grep 'exe=/usr/sbin/sshd' var/log/audit/audit.log | grep 192.0.2.80
+	cp /var/log/audit/audit.log > /tmp/a1
+	grep -vE "ID1|ID2|ID3" /tmp/a1 > /tmp/alog
+	grep 'exe="/usr/sbin/sshd"' /tmp/alog | grep 192.0.2.80
+	
+dpkg-query -L rkhunter
+	/etc/rkhunter.conf
+	/etc/default/rkhunter 
+	/etc/aliases          (for who its sending to) 
+	/etc/cron.daily/rkhunter 
+	
+dpkg-query -L clamav
+	/etc/clamav/clamd.conf  + freshclam.conf + 2 init.d startups 
+	/var/log/clamav
+		/etc/logrotate.d/ 
+
+dpkg-query -L clamav-freshclam
+		/etc/clamav/freshclam.conf 
+		/etc/cron.weekly/scan 
+		/var/log/clamav 
+dpkg-query -L chkrootkit
+	/etc/chkrootkit.conf 
+	
+dpkg-query -L fail2ban
+	/etc/fail2ban/fail2ban.conf 
+	/etc/fail2ban/jail.conf 
+	
+dpkg-query -L logcheck
+	/usr/sbin/logcheck 
+	/etc/cron.d/logcheck 
+	/etc/logcheck/logcheck.logfiles
+		

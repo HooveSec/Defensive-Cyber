@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "enter network addresses first 3 octets: IE 192.168.1"
+read net
+
+for i in {1..254} ;do (ping -c 1 $net.$i | grep "bytes from" &) ;done

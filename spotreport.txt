@@ -1,0 +1,26 @@
+DATE:
+TIME: 
+POC/ANALYST: 
+
+TYPE OF INCIDENT[outage/malware/unauthorized access/data breach/ddos/exploit/shellcode/remote execution/recon]: 
+
+
+First Detection: 
+
+HOW IT WAS DETECTED: 
+	QUERY:
+
+WHAT DO YOU THINK HAPPENED:	
+
+SYSTEMS INVOLVED: 
+IP ADDR:
+MAC ADDR: 
+OS:
+PORTS/PROTOCOLS:
+ALT IDENTIFICATION:
+
+HOW DID IT HAPPEN:
+
+HOW DID WE REMEDIATE:
+
+

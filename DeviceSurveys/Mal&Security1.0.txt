@@ -1,0 +1,166 @@
+Forensics
+	windows 
+	tasklist /m                                             (grabs dlls)
+	tasklist /svc
+	pslist -t -accepteula | more 
+	autorunsc -t | more
+	autorunsc -b | more 
+	handle -p yeet.exe 
+	reg enumkey -k 'hklm\software\microsoft\currentversion\run' /s 
+	run uploadexex -e /root/fport.exe -r -v
+	dir C:\* /S /T:W | find "10/29/2010 11:39"
+	sigcheck.exe C:\spoolmgr.exe
+	sigcheck.exe -u C:\windows\system32\drivers > sigcheck.txt
+	run uploadexec -e /root/promiscdetect.exe -r -v
+	run process_memdump -p 1008
+	netapi will log to 529 or 680
+	run multicommand -cl "cmd /c dir c:\\windows\\system32\\drivers /o:d /t:w".
+	wmic process where name="nc64.exe" get processid,parentprocessid,executablepath
+	for %F in (*) do @certutil -hashfile "%F" MD5 					(entire directory)
+	Wevtutil qe security /c:25 /rd:true /f:text
+	
+UNIX
+	ps -ef --sort start_time
+	find / -type d -name ".*" 2>/dev/null
+	find / -type f -name ".*" 2>/dev/null
+	lsof -p PID
+	stat file 
+Security Systems
+	Defender
+		MpCmdRun.exe (c:\program files\Windows Defender\MpCmdRun.exe)
+		MSASCuil.exe (c:\program files\Windows Defender\MSASCuil.exe)
+		MsMpEng.exe (c:\program files\Windows Defender\MsMpEng.exe)
+		NisSrv.exe (c:\program files\Windows Defender\NisSrv.exe)
+		
+		
+		run multicommand -cl 'powershell /c get-mpcomputerstatus'
+		reg enumkey -k "HKLM\\software\\microsoft\\windows defender\\signature updates"
+		cat 'C:\windows\temp\MpSigStub.log'                   (signature and version)
+		un multicommand -cl 'reg query "HKLM\software\microsoft\windows defender\scan" /v LastScanRun'
+		run multicommand -cl 'w32tm.exe 0x01d53bfa813e5e65'
+		
+		c:\temp\MpSigStub.log           (last updated rules)
+		c:\temp\MpCmdRun.log
+		remote file reporting
+		HKLM\software\microsoft\windows defender\spynet\spynetreporting
+		upload /root/handle64.exe C:\\windows\\temp\\handle64.exe 
+		handle64.exe -p (MsMpEng.exe pid)
+		search -f *.log
+		
+	Other windows
+		run post/windows/gather/enum_services
+		run multicommand -cl "sc query winrm"
+		run multicommand -cl "sc query wecsvc"
+		run multicommand -cl "cmd /c winrm get winrm\/config"
+		run multicommand -cl "cmd /c winrm enumerate winrm\/config\/listener" (listener enabled and remoteaccess enabled)
+		run multicommand -cl "netsh advfirewall firewall show rule name=\"Windows Remote Management (HTTP-In)\""   (in or out) 
+		ls -t c:\windows\system32\winevt\logs (if recently modified then collecter if not forwarer.
+				
+		security essentials
+			HKLM\software\microsoft\microsoft antimalware\spynet\spynetreporting
+			req queryval -k 'HKLM\software\microsoft\microsoft antimalware\spynet' -v spynetreporting 
+				1 basic
+				2 advanced
+		Quarantine folder
+			C:\programdata\microsoft\windows defender\quarantine
+		Deviceguard 
+			reg enumkey -k HKLM\\system\\currentcontrolset\\control\\deviceguard         
+				(look for enablevirtulizationbasedsecurity and requireplatformsecurity featutes are set to 1
+		
+		Credential Guard
+			reg enumkey -k HKLM\\system\\currentcontrolset\\control\\LSA
+				LsaCfgFlags set to 1
+		
+		Bitlocker
+			
+		Measuredboot
+			needs TPM(like trustedboot) to be enabled. needs UEFI also.
+			
+		Black.Whitelisting/Applocker
+			reg enumkey -k HKLM\\software\\policies\\microsoft\\windows\\safer\\codeidentifiers
+			sc query AppIDSvc 
+		
+			powershell_shell
+				Get-AppLockerPolicy -Effective -Xml | Set-Content ('c:\somedirectory\somename.xml')
+				download 'c:\somedirectory\somename.xml'
+			
+		SECURITY PROCESSES
+			ClamTray is a monitor for Clam AntiVirus,
+			zlclient and vsmon.exe is related to the Zone Alarms firewall,
+			SpybotSD is a spyware/adware removal tool, and
+			Taskmgr.exe, iexplore.exe, and logon.scr aren't security related but are important to know.
+			
+			chkrootkit
+			rkhunter
+			
+		Sophos
+			C:\programdata\sophos\sophos anti-virus\logs\SAV.txt             (detection engine) (can it send back to home/Sophos Live Protection is enabled)
+			enum applications for av #
+			c:\programdata\sophos\home clean\logs             (for last scan)
+			run multicommand -cl "cmd /c dir c:\\quarantine /S /A:D"
+			c:\programdata\sophos\autoupdate\data\status\SophosUpdateStatus.xml (detection/product ver)
+			 c:\programdata\sophos\autoupdate\data\warehouse directory  (signature) 
+			 HKLM\Software\SophosHomeClean\LastScan (lastscaN)
+			
+			sophos-Av(unix)
+				/opt/sophos-av 
+					/opt/sophos-av/engine/version 
+					/opt/sophos-av/etc/update.last_product_details
+		Baidu
+			search -f version.xml 
+			config.ini (AV VERSION UPDATE) (AVUPDATEDATE) (AVENGINEVERSION)
+			userinfo.ini
+			AutoUpload
+			c:\program files (x86)\Baidu Security\Baidu Antivirus\qv       (quarantine)
+			run post/windows/gather/enum_applications     (product version)
+			c:\users\all users\baidu\Antivirus\userconfig.ini   (last scan epoch time)
+			[setting] keeplocalcopy  (1 = locally)
+			UploadServerURL   CloudQueryUrl AutoUpload    (for sending to mothership)
+			
+		netmonitors 
+			mrtg 
+			
+			ntop tcp/3000
+			
+			
+		mcaffee
+			 c:\ProgramData\McAfee\Endpoint Security\Logs
+
+	nmblookup -A 192.168.106.54 
+	1c== dc
+	
+MSS ESP Signature update
+	C:\windows\temp\MpSigStub.log               OR SYSTEM id 2000
+MSS Exlcudes
+	req qenumkey -k 'HKLM\software\microsoft\microsoft antimalware'
+Send Files back
+	req queryval -k 'HKLM\software\microsoft\microsoft antimalware\' -v spynetreporting 
+		1 basic 2 advacned 0 nonme
+Excluded Files	
+	reg enumkey -k 'HKLM\Software\Microsoft\Microsoft Antimalware\Exclusions\paths'
+Patches
+	sysninfo
+Engine Version	
+	reg queryval -k 'HKLM\software\microsoft\ microsoft antimalware\signature updates' -v EngineVersion
+Network Inspection
+	reg queryval -k 'HKLM\software\microsoft\ microsoft antimalware\signature updates' -v NISEngineVersion
+AV Signature
+	reg queryval -k 'HKLM\software\microsoft\microsoft antimalware\signature updates\' -v AVSignatureVersion
+Date of signatures 
+	c:\windows\temp\MpSigStub.log
+Last Scan
+	System event ID 1001 or 1000
+Remote logging
+	MSE doesn't have it but Windows event management does, check fw, look for port 5985
+Quarantine
+	c:\users\all users\microsoft\microsoft antimalware\quarantine
+ESP related 
+	MsMpEng.exe,NisSrv.exe,msseces.exe 
+
+ClamAV Daily Definitions 
+	sigtool --info /var/lib/clamav/daily.cvd
+Clam check for updates 
+	cat /etc/clamav/freshclam.conf   (product checks)
+
+Unix Virtual Web Hosts
+	ls /etc/apache2/sites-available
