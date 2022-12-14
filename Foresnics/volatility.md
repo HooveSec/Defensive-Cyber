@@ -5,6 +5,7 @@
 	python3 vol.py -f workstation.vmem windows.pslist
 	python3 vol.py -f workstation.vmem windows.psscan
 	python3 vol.py -f workstation.vmem windows.pstree
+	python3 vol.py -f workstation.vmem windows.netstat.NetStat
 
 
 ## Individual file forensics
