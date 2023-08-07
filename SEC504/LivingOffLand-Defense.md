@@ -11,7 +11,7 @@ get-process | select-object -property path,name,id | where-object -property name
 get-process | select-object -property path,name,id | where-object -property path -like "*temp*"
 get-process | select-object -property path,name,id | where-object -property id -eq 4516
 
-get-ciminstance -class win32_process | select-object processid,processname,commandline,path 
+get-ciminstance -class win32_process | select-object processid,processname,commandline,path,parentprocessid
 get-ciminstance -class win32_process | where-object -property ParentProcessId -EQ 644
 
 
@@ -45,4 +45,18 @@ get-scheduledtaskinfo -taskname 'avastupadtre' | select-object lastruntime
 get-winevent -logname system | where-object -property id -eq 7045 | format-list -property timecreated,message
 
 ### Differential Analysis
+$b = cat scheduledtask
+$n = cat scheduledtask2 
+compare-object $b $n 
 
+
+### remediation
+stop-process 4156
+remove-item $env:temp\calcache.exe
+
+stop-service dynamics
+get-process dynamics | Stop-process 
+rm C:\windows\dynamics.exe 
+net user dynamics /delete
+sc.exe delete dynamics
+Unregister-ScheduledTask -TaskName "Microsoft eDynamics"
