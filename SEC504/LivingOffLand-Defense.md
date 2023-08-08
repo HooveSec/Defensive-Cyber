@@ -60,3 +60,20 @@ rm C:\windows\dynamics.exe
 net user dynamics /delete
 sc.exe delete dynamics
 Unregister-ScheduledTask -TaskName "Microsoft eDynamics"
+
+### TCPDUMP
+tcpdump -i <interface>
+tcpdump -i <interface> -w file 
+### Replay packets from file 
+tcpdump -r file -n 
+### SHow ASCII
+tcpdump -r file -n -A 
+
+### BPF
+tcpdump -r file 'host 8.8.8.8'
+tcpdump -r file 'src host 8.8.8.8'
+tcpdump -r file 'not src host 8.8.8.8'
+tcpdump -r file 'icmp and (src host 8.8.8.8)'
+tcpdump -r file 
+
+tcpdump -nr falsimentis.pcap dst host 167.172.201.123 | cut -d ' ' -f 3 | cut -d '.' -f 1-4 | sort -u
