@@ -1,4 +1,5 @@
 ## RITA 
+sudo service mongod start
 rita import . mynetwork 
 rita html-report mynetwork 
 
@@ -13,3 +14,9 @@ with 90 min interval, 120 jitter, variable size
 
 ### Downloads 
 https://www.activecountermeasures.com/free-tools/
+
+### Lab
+sudo service mongod start
+
+rita import ~/labs/RITA/VSAgent_Logs/ vsagent
+rita import ~/labs/RITA/DNSCat_Logs/ dnscat2
