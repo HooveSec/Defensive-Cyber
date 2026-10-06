@@ -1,30 +1,101 @@
-<h1 align="center">Hi 👋, I'm SteveIrwinCyber</h1>
-<h3 align="center">Husband, Hacker, Defender, Cat-Dad</h3>
+# Defensive Cyber
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=steveirwincyber&label=Profile%20views&color=0e75b6&style=flat" alt="steveirwincyber" /> </p>
+Personal notes, host-survey command lists, and small helper scripts for defensive work: incident response, host forensics, Windows/Linux/Solaris collection, and SANS SEC504 lab notes.
 
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=steveirwincyber" alt="steveirwincyber" /></a> </p>
+This is not a GitHub profile page. It is a working notebook. Treat every script as something to run only on systems you own or are explicitly authorized to assess.
 
-<p align="left"> <a href="https://twitter.com/steveirwincyber" target="blank"><img src="https://img.shields.io/twitter/follow/steveirwincyber?logo=twitter&style=for-the-badge" alt="steveirwincyber" /></a> </p>
+## Layout
 
-- 🔭 I’m currently working on **Offensive and Defensive Cyber Projects**
+| Path | What is in it |
+| --- | --- |
+| [`incident-response/`](incident-response/) | Spot-report template for first-pass incident writeups |
+| [`scripts/`](scripts/) | Lab/setup helpers (tool bootstrap, ping sweep, Solaris PID-by-port) |
+| [`device-surveys/`](device-surveys/) | Command checklists for Windows, Unix, and Solaris live response |
+| [`forensics/`](forensics/) | Malware/forensics notes and Volatility 3 command snippets |
+| [`powershell-audit/`](powershell-audit/) | Windows remote collection and enumeration scripts |
+| [`redhat/`](redhat/) | CentOS/RHEL host facts dumped toward JSON for SIEM ingest |
+| [`solarwinds/`](solarwinds/) | SUNBURST/TEARDROP detection artifacts (YARA + Snort) |
+| [`sec504/`](sec504/) | SEC504 course notes, mixed defensive and lab/offensive material |
 
-- 👯 I’m looking to collaborate on **Any project**
+## Incident response
 
-- 👨‍💻 All of my projects are available at [https://github.com/steveirwincyber](https://github.com/steveirwincyber)
+- [`incident-response/spot-report.txt`](incident-response/spot-report.txt) — fill-in template: detection, systems, hypothesis, remediation.
 
-- 📫 How to reach me **steveirwincyber@gmail.com**
+## Scripts
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://twitter.com/steveirwincyber" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="steveirwincyber" height="30" width="40" /></a>
-</p>
+- [`scripts/build-defender-tools.sh`](scripts/build-defender-tools.sh) — apt/snap/git bootstrap for a Linux analysis box.
+- [`scripts/ping-sweep.sh`](scripts/ping-sweep.sh) — simple ICMP sweep of a `/24` (lab/recon helper).
+- [`scripts/solaris-get-port-pid.sh`](scripts/solaris-get-port-pid.sh) — map a TCP/UDP port to a PID on Solaris via `pfiles`.
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://www.arduino.cc/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/arduino-1.svg" alt="arduino" width="40" height="40"/> </a> <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a> <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.adobe.com/in/products/illustrator.html" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/adobe_illustrator/adobe_illustrator-icon.svg" alt="illustrator" width="40" height="40"/> </a> <a href="https://kubernetes.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://www.photoshop.com/en" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/photoshop/photoshop-line.svg" alt="photoshop" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+## Device surveys
 
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=steveirwincyber&show_icons=true&locale=en&layout=compact" alt="steveirwincyber" /></p>
+Live-response command lists (no automation). Use the version that matches the host OS.
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=steveirwincyber&show_icons=true&locale=en" alt="steveirwincyber" /></p>
+- [`device-surveys/windows-1.0.txt`](device-surveys/windows-1.0.txt)
+- [`device-surveys/windows-2.0.txt`](device-surveys/windows-2.0.txt)
+- [`device-surveys/unix-1.0.txt`](device-surveys/unix-1.0.txt)
+- [`device-surveys/unix-2.0.txt`](device-surveys/unix-2.0.txt)
+- [`device-surveys/solaris-1.0.txt`](device-surveys/solaris-1.0.txt)
 
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=steveirwincyber&" alt="steveirwincyber" /></p>
+## Forensics
+
+- [`forensics/forensics.md`](forensics/forensics.md) — packing, strings/FLOSS, lab VMs.
+- [`forensics/volatility.md`](forensics/volatility.md) — Volatility 3 process/network/dump workflow.
+
+## PowerShell audit
+
+- [`powershell-audit/audit.ps1`](powershell-audit/audit.ps1) — remote host collection (logs, shares, processes, etc.).
+- [`powershell-audit/automater.ps1`](powershell-audit/automater.ps1) — runs `audit.ps1` against `computers.txt`.
+- [`powershell-audit/enum.ps1`](powershell-audit/enum.ps1) — local Windows enumeration (Z3R0th).
+- [`powershell-audit/jaws-enum.ps1`](powershell-audit/jaws-enum.ps1) — JAWS-style Windows enum.
+
+## Red Hat / CentOS
+
+- [`redhat/centos-5.7-enum-to-json.sh`](redhat/centos-5.7-enum-to-json.sh) — host commands formatted as JSON fragments for Splunk/Kibana.
+
+## SolarWinds (SUNBURST)
+
+Copied detection content from FireEye's public SUNBURST countermeasures:
+
+- [`solarwinds/teardrop-dropper.yar`](solarwinds/teardrop-dropper.yar)
+- [`solarwinds/sunburst.rules`](solarwinds/sunburst.rules)
+
+## SEC504 notes
+
+Course notebook. Defensive pieces and lab/offensive technique notes live side by side.
+
+**Defense / detection**
+
+- [`sec504/living-off-land-defense.md`](sec504/living-off-land-defense.md)
+- [`sec504/deepblue.md`](sec504/deepblue.md)
+- [`sec504/rita.md`](sec504/rita.md)
+- [`sec504/differential-analysis.ps1`](sec504/differential-analysis.ps1)
+- [`sec504/volatility.md`](sec504/volatility.md)
+- [`sec504/malware-analysis.md`](sec504/malware-analysis.md)
+
+**Cloud and recon notes**
+
+- [`sec504/cloud-buckets.md`](sec504/cloud-buckets.md)
+- [`sec504/cloud-post.md`](sec504/cloud-post.md)
+- [`sec504/cloud-scan.md`](sec504/cloud-scan.md)
+- [`sec504/bucket-list.txt`](sec504/bucket-list.txt)
+- [`sec504/dns-enum.md`](sec504/dns-enum.md)
+- [`sec504/custom-wordlist-dns.md`](sec504/custom-wordlist-dns.md)
+- [`sec504/nmap.md`](sec504/nmap.md)
+- [`sec504/smb.md`](sec504/smb.md)
+- [`sec504/netcat.md`](sec504/netcat.md)
+
+**Lab / offensive course notes** (authorized training environments only)
+
+- [`sec504/hijacking.md`](sec504/hijacking.md)
+- [`sec504/metasploit.md`](sec504/metasploit.md)
+- [`sec504/password-attacks.md`](sec504/password-attacks.md)
+- [`sec504/pivoting.md`](sec504/pivoting.md)
+- [`sec504/post-exploitation.md`](sec504/post-exploitation.md)
+- [`sec504/python-meterpreter.md`](sec504/python-meterpreter.md)
+- [`sec504/data-exfil.md`](sec504/data-exfil.md)
+- [`sec504/web-apps-embedded-systems-attacks.md`](sec504/web-apps-embedded-systems-attacks.md)
+- [`sec504/api-bypass-ip-restrictions.md`](sec504/api-bypass-ip-restrictions.md)
+- [`sec504/local-password-spray.ps1`](sec504/local-password-spray.ps1)
+- [`sec504/cookiecatcher.php`](sec504/cookiecatcher.php)
+- [`sec504/shellcode.cs`](sec504/shellcode.cs)
