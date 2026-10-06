@@ -2,7 +2,7 @@
 ### This script is to automate host analysis by turning commands into JSON format to get implemented into splunk or kibana
 ### Used for Centos/Redhat/Linux boxes
 #Gets Last Login Information
-lastlog | grep-v "Never logged" | grep -v "From" | awk '
+lastlog | grep -v "Never logged" | grep -v "From" | awk '
 BEGIN { FS= ":"; ORS = ""; print " [ "}
 { printf "%s{\"Last Login\": \"%s\"}",
 separator, $0
@@ -75,7 +75,7 @@ separator = ", "
 END { print " ] } }';
 
 #Gets Active Processes
-ps -aux | | awk '
+ps -aux | awk '
 BEGIN { ORS = ""; print " [ "}
 { printf "%s{\"User\": \"%s\", \"Pid\": \"%s\", \"Command\": \"%s\"}",
 separator, $1, $2, $(NF)
